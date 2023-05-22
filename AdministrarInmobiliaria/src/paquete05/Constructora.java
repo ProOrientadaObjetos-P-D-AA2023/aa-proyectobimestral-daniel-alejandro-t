@@ -10,5 +10,5 @@ package paquete05;
  * @author reroes
  */
 public class Constructora {
-    
+    String nombreConstructora, idConstructora;
 }

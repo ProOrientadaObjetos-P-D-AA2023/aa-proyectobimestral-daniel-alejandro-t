@@ -9,6 +9,9 @@ package paquete06;
  *
  * @author reroes
  */
-public class Departamento {
-    
+public class Departamento extends Vivienda{
+    double valorAlicuotaMensual;
+
+    String nombreEdificio;
+    String ubicacionInterna;    // Ubicación dentro del edificio
 }

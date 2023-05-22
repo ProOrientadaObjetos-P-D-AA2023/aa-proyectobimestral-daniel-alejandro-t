@@ -9,6 +9,7 @@ package paquete06;
  *
  * @author reroes
  */
-public class Casa {
+public class Casa extends Vivienda{
+    String numCasa;
     
 }

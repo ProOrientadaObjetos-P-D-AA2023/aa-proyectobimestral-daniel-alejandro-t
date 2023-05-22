@@ -10,5 +10,28 @@ package paquete03;
  * @author reroes
  */
 public class Barrio {
-    
+    String nombreDelBarrio;
+    String referencia;
+
+    public Barrio(String nombreDelBarrio, String referencia) {
+        this.nombreDelBarrio = nombreDelBarrio;
+        this.referencia = referencia;
+    }
+
+    public String getNombreDelBarrio() {
+        return nombreDelBarrio;
+    }
+
+    public void setNombreDelBarrio(String nombreDelBarrio) {
+        this.nombreDelBarrio = nombreDelBarrio;
+    }
+
+    public String getReferencia() {
+        return referencia;
+    }
+
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
 }
+
