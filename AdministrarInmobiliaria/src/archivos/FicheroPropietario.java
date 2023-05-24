@@ -107,4 +107,9 @@ public class FicheroPropietario extends Fichero{
             }
         }
     }
+
+    // Método que retorna la lista de propietarios
+    public List<Propietario> getListaPropietarios() {
+        return listaPropietarios;
+    }
 }
