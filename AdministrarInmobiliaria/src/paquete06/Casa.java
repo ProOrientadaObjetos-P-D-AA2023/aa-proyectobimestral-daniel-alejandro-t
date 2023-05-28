@@ -5,11 +5,54 @@
  */
 package paquete06;
 
-/**
- *
- * @author reroes
- */
+import paquete02.*;
+import paquete03.*;
+import paquete04.*;
+import paquete05.*;
+
+
 public class Casa extends Vivienda{
+    Propietario propietario;
+    Barrio barrio;
+    Ciudad ciudad;
+    Constructora constructora;
+
     String numCasa;
+
+    public Casa(String numCasa, double precioMetroCuadrado, double numMetrosCuadrados, int numCuartos,
+                Propietario propietario, Barrio barrio, Ciudad ciudad, Constructora constructora) {
+
+        super(precioMetroCuadrado, numMetrosCuadrados, numCuartos, propietario, barrio, ciudad, constructora);
+
+        this.numCasa = numCasa;
+    }
+
+    public String getNumCasa() {
+        return numCasa;
+    }
+
+    public void setNumCasa(String numCasa) {
+        this.numCasa = numCasa;
+    }
+
+    @Override
+    public String toString() {
+        return "Casa{" +
+                "numCasa='" + numCasa + '\'' +
+                ", precioMetroCuadrado=" + precioMetroCuadrado +
+                ", numMetrosCuadrados=" + numMetrosCuadrados +
+                ", costoFinal=" + costoFinal +
+                ", numCuartos=" + numCuartos +
+                ", propietario=" + propietario +
+                ", barrio=" + barrio +
+                ", ciudad=" + ciudad +
+                ", constructora=" + constructora +
+                '}';
+    }
+
+    
+
+
+ 
     
 }

@@ -92,3 +92,14 @@ Se agrupan los requerimientos para facilitar el desarrollo del trabajo.
 
 ### Imagen del flujo de ejecución en la carpeta diagramas
 ![Flujo de ejecución](diagramas/flujo-de-ejecucion.svg)
+
+### ¿Que ya funciona?
+
+| CRUD	 		| Crea 	| Read | Update | Delete | Cargar | Guardar |
+|---------------|-------|-----------|-----------|-----------|-----------|-----------|
+|  Propietario (Daniel)  |  [x]  |  [x]  |  [x]  |  [x]  | [x] | [x] |
+|  Barrio (Alex) 		| []  	| []  	| [] 	|  [] 	| [] | [] |
+| Ciudad (Raul) 		| []  	| []  	| [] 	|  [] 	| [] | [] |
+| Constructora (Cristian)  | []  	| []  	| [] 	|  [] 	| [] | [] |
+| Casa (José)  		| []  	| []  	| [] 	|  [] 	| [] | [] |
+| Dapartamento ()  | []  	| []  	| [] 	|  [] 	| [] | [] |

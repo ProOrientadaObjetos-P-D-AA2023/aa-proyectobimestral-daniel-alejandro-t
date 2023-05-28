@@ -11,4 +11,25 @@ package paquete05;
  */
 public class Constructora {
     String nombreConstructora, idConstructora;
+
+    public Constructora(String nombreConstructora, String idConstructora) {
+        this.nombreConstructora = nombreConstructora;
+        this.idConstructora = idConstructora;
+    }
+
+    public String getNombreConstructora() {
+        return nombreConstructora;
+    }
+
+    public void setNombreConstructora(String nombreConstructora) {
+        this.nombreConstructora = nombreConstructora;
+    }
+
+    public String getIdConstructora() {
+        return idConstructora;
+    }
+
+    public void setIdConstructora(String idConstructora) {
+        this.idConstructora = idConstructora;
+    }
 }

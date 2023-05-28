@@ -44,7 +44,6 @@ public class Propietario {
 
     @Override
     public String toString() {
-        return String.format("Propietario: %s %s%nIdentificación: %s%n", 
-                getNombres(), getApellidos(), getIdentificacion());
+        return "Propietario: " + getNombres() + " " + getApellidos() + " Cédula: " + getIdentificacion();
     }
 }

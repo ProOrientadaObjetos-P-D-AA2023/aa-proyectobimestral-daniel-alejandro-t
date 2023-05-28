@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.io.IOException;
 
@@ -23,7 +24,8 @@ public class FicheroPropietario extends Fichero{
         super(rutaArchivo);
 
         // Inicializamos listaPropietarios para evitar NullPointerException
-        listaPropietarios = null;
+        // listaPropietarios = new ArrayList<>();
+        archivoPropietarios = new File(rutaArchivo);
     }
 
     public String getRutaArchivo() {
@@ -55,12 +57,13 @@ public class FicheroPropietario extends Fichero{
         
         try {
             br = new BufferedReader(new FileReader(getRutaArchivo()));
+            listaPropietarios = new ArrayList<>();
 
             String linea;
 
             while ((linea = br.readLine()) != null) {
                 // Aquí dividimos la línea en campos separados por comas
-                String[] campos = linea.split(",");
+                String[] campos = linea.split(","); // campos[0] = "Daniel",  campos[1] = "..."
 
                 // Obtenemos los datos de cada campo
                 String nombre = campos[0];
@@ -80,7 +83,8 @@ public class FicheroPropietario extends Fichero{
     @Override
     // El siguiente método escribe todos los datos de la lista en el archivo de texto.
     public void setVolcarDatosAlArchivo(List miListaConDatos) {
-        this.listaPropietarios = listaPropietarios;
+        this.listaPropietarios = miListaConDatos;
+        archivoPropietarios = new File(rutaArchivo);
 
         // Abre el archivo para escritura
         try {
