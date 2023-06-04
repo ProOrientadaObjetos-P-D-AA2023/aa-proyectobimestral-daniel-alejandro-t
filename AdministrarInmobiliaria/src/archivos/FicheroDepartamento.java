@@ -44,16 +44,16 @@ public class FicheroDepartamento extends Fichero{
                 int numCuartos;
 
                 // Obtenemos los datos de cada campo
-                nombreEdificio = campos[0];
-                ubicacionInterna = campos[1];
-                identificacionPropietario = campos[2];
-                nombreBarrio = campos[3];
-                nombreCiudad = campos[4];
-                idConstructora = campos[5];
-                valorAlicuotaMensual = Double.parseDouble(campos[6]);
-                precioMetroCuadrado = Double.parseDouble(campos[7]);
-                numMetrosCuadrados = Double.parseDouble(campos[8]);
-                numCuartos = Integer.parseInt(campos[9].replace(";", "")); // Elimina el punto y coma al final
+                valorAlicuotaMensual = Double.parseDouble(campos[0]);
+                nombreEdificio = campos[1];
+                ubicacionInterna = campos[2];
+                precioMetroCuadrado = Double.parseDouble(campos[3]);
+                numMetrosCuadrados = Double.parseDouble(campos[4]);
+                numCuartos = Integer.parseInt(campos[5]);
+                identificacionPropietario = campos[6];
+                nombreBarrio = campos[7];
+                nombreCiudad = campos[8];
+                idConstructora = (campos[9].replace(";", "")); // Elimina el punto y coma al final
              
                 
                 // Agregamos el departamento a la lista
@@ -78,7 +78,9 @@ public class FicheroDepartamento extends Fichero{
 
             // Recorre la lista y escribe cada elemento en el archivo
             for (Departamento departamento : listaDepartamentos) {
-                bw.write(departamento.getValorAlicuotaMensual() + "," + departamento.getNombreEdificio() + "," + departamento.getUbicacionInterna() + ";");
+                bw.write(departamento.getValorAlicuotaMensual() + "," + departamento.getNombreEdificio() + "," + departamento.getUbicacionInterna() + "," + departamento.getPrecioMetroCuadrado() +
+                        "," + departamento.getNumMetrosCuadrados() + "," + departamento.getNumCuartos() + "," + departamento.getIdentificadorPropietario() + 
+                        "," + departamento.getNombreBarrio() + "," + departamento.getNombreCiudad() + "," + departamento.getIdConstructora() + ";");
                 bw.newLine();
             }
 

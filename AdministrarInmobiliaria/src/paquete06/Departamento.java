@@ -9,7 +9,7 @@ public class Departamento extends Vivienda{
     
     double valorAlicuotaMensual;
     String nombreEdificio;
-    String ubicacionInterna;   // Ubicación dentro del edificio
+    String ubicacionInterna;    // Ubicación dentro del edificio
 
     public Departamento( double valorAlicuotaMensual, String nombreEdificio, String ubicacionInterna,
                          double precioMetroCuadrado, double numMetrosCuadrados, int numCuartos,
@@ -44,6 +44,38 @@ public class Departamento extends Vivienda{
 
     public void setUbicacionInterna(String ubicacionInterna) {
         this.ubicacionInterna = ubicacionInterna;
+    }
+
+    public String getIdentificadorPropietario() {
+        return identificadorPropietario;
+    }
+
+    public void setIdentificadorPropietario(String identificadorPropietario) {
+        this.identificadorPropietario = identificadorPropietario;
+    }
+
+    public String getNombreBarrio() {
+        return nombreBarrio;
+    }
+
+    public void setNombreBarrio(String nombreBarrio) {
+        this.nombreBarrio = nombreBarrio;
+    }
+
+    public String getNombreCiudad() {
+        return nombreCiudad;
+    }
+
+    public void setNombreCiudad(String nombreCiudad) {
+        this.nombreCiudad = nombreCiudad;
+    }
+
+    public String getIdConstructora() {
+        return idConstructora;
+    }
+
+    public void setIdConstructora(String idConstructora) {
+        this.idConstructora = idConstructora;
     }
 
     @Override
