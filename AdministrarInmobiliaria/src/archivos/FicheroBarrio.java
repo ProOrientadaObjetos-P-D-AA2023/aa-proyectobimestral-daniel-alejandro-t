@@ -32,8 +32,8 @@ public class FicheroBarrio extends Fichero{
     public FicheroBarrio(String a) {
         super(a);
 
-        // Inicializamos ListaBarrio para evitar NullPointerException
-        // listaPropietarios = new ArrayList<>();
+        // Inicializamos listaPropietarios para evitar NullPointerException
+        // listaBarrios = new ArrayList<>();
         archivoBarrios = new File(a);
     }
 
@@ -101,7 +101,7 @@ public class FicheroBarrio extends Fichero{
         }
     }
 
-    // Método que retorna la lista de propietarios
+    // Método que retorna la lista de Barrios
     public List<Barrio> getListaBarrios() {
         return listaBarrios;
     }
