@@ -44,11 +44,12 @@ public class Ejecutor {
         FicheroPropietario archivoPropietarios = new FicheroPropietario("C:\\Users\\aysanchez6\\Desktop\\POO\\tallerFinal1\\aa-proyectobimestral-daniel-alejandro-t\\AdministrarInmobiliaria\\datos\\propietarios.dat");
         String rutaArchivo = "C:\\Users\\aysanchez6\\Desktop\\POO\\tallerFinal1\\aa-proyectobimestral-daniel-alejandro-t\\AdministrarInmobiliaria\\datos\\barrios.dat";
         FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo);
+        FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo);
         // Usando el método getListaPropietarios() de la clase FicheroPropietario cargamos los datos
         //  del archivo al programa usando la instancia del objeto lecturaPropietarios
         listaPropietarios = archivoPropietarios.getListaPropietarios();
         listaBarrios = archivoBarrios.getListaBarrios();
-        //listaBarrios = 
+        listaCiudades = archivoCiudades.getListaBarrios();
 
         // Creamos un objeto de tipo Scanner para leer la opción ingresada por el usuario
         Scanner entrada = new Scanner(System.in);
@@ -285,8 +286,103 @@ public class Ejecutor {
                     break;
                 case 3:     // Ciudades
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 3
+                    while (opcion != 5) {
+                        // Imprimimos el consola el menú de opciones
+                        // Que nos permite hacer un CRUD de propietarios
+                        System.out.println(menuCRUD);
 
-                    break;
+                        // Leemos la opción ingresada por el usuario
+                        int opcion3 = entrada.nextInt();
+                        switch (opcion3) {
+                            case 1:     // Crear
+                                String nombreCiudad,
+                                 nombreProvincia;
+
+                                // Crear un objeto de tipo Propietario
+                                do {
+                                    System.out.println("Ingrese el nombre de la ciudad");
+                                    nombreCiudad = entrada.nextLine();
+                                } while (nombreCiudad.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el nombre de la Provincia");
+                                    nombreProvincia = entrada.nextLine();
+                                } while (nombreProvincia.isEmpty());
+
+                                listaCiudades.add(new Ciudad(nombreCiudad, nombreProvincia));
+                                break;
+
+                            case 2: //Leer
+                                // Usando el método setLeerLista() de la clase Ejecutor
+                                // imprimimos en consola la lista de propietarios
+                                setLeerLista(listaCiudades);
+
+                                break;
+                            case 3:  //Actualizar    
+                                if (listaCiudades == null) {
+                                    System.out.println("No hay ciudades registrados para actualizar");
+
+                                } else {
+                                    String nombreCiu2, nombreProv2;
+                                    int identificadorB;
+
+                                    // Ingrese el identificador del propietario que desea actualizar
+                                    System.out.println("-------------------------------");
+                                    setLeerLista(listaCiudades);
+                                    System.out.println("---------------------------------");
+                                    System.out.println("Ingrese el identificador de la ciudad que desea actualizar");
+                                    do {
+                                        identificadorB = entrada.nextInt();
+                                    } while (identificadorB < 0 || identificadorB > listaCiudades.size());
+
+                                    // Creamos un objeto de tipo barrio
+                                    System.out.println("Ingrese los datos del nuevo de la nueva ciudad");
+
+                                    do {
+                                        System.out.println("Ingrese el nombre de la ciudad");
+                                        nombreCiu2 = entrada.nextLine();
+                                    } while (nombreCiu2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el nombre de la provincia");
+                                        nombreProv2 = entrada.nextLine();
+                                    } while (nombreProv2.isEmpty());
+
+                                    // Usando el método setActualizarObjeto() de la clase Ejecutor
+                                    // actualizamos el objeto de tipo Propietario
+                                    listaCiudades.set(identificadorB, new Ciudad(nombreCiu2, nombreProv2));
+                                }
+                                break;
+                                
+                            case 4:     // Eliminar
+                                if (listaCiudades == null) {
+                                    System.out.println("No hay ciudades registrados para eliminar");
+                                } else {
+                                    // Ingrese el identificador del barrio que desea eliminar que desea eliminar
+                                    System.out.println("Ingrese el índice de la ciudad que desea eliminar");
+                                    setLeerLista(listaCiudades);
+                                    int identificadorEliminar;
+
+                                    do {
+                                        identificadorEliminar = entrada.nextInt();
+                                    } while (identificadorEliminar < 0 || identificadorEliminar > listaCiudades.size());
+
+                                    // Usando el método setEliminarObjeto() de la clase Ejecutor
+                                    // eliminamos el objeto de tipo Propietario
+                                    listaCiudades.remove(identificadorEliminar);
+                                }
+                                break;
+                            case 5:     // Salir
+                                opcion = 5;
+
+                                break;
+
+                            default:
+                                System.out.println("Opción no válida");
+                                break;
+                        }
+
+                    }
                 case 4:     // Constructoras
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 4
 
@@ -305,6 +401,7 @@ public class Ejecutor {
                     // Pienso que si es necesario ya que el contenido de las listas puede haber cambiado
                     archivoPropietarios.setVolcarDatosAlArchivo(listaPropietarios);
                     archivoBarrios.setVolcarDatosAlArchivo(listaBarrios);
+                    archivoCiudades.setVolcarDatosAlArchivo(listaCiudades);
                     System.out.println("Gracias por usar el programa.");
 
                     break;
