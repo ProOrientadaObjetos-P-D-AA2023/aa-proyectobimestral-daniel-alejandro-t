@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete06;
 
 import paquete02.*;
@@ -11,16 +6,16 @@ import paquete04.*;
 import paquete05.*;
 
 public class Departamento extends Vivienda{
+    
     double valorAlicuotaMensual;
-
     String nombreEdificio;
-    String ubicacionInterna;    // Ubicación dentro del edificio
+    String ubicacionInterna;   // Ubicación dentro del edificio
 
     public Departamento( double valorAlicuotaMensual, String nombreEdificio, String ubicacionInterna,
                          double precioMetroCuadrado, double numMetrosCuadrados, int numCuartos,
-                         Propietario propietario, Barrio barrio, Ciudad ciudad, Constructora constructora) {
+                         String identificadorPropietario, String nombreBarrio, String nombreCiudad, String idConstructora) {
 
-        super(precioMetroCuadrado, numMetrosCuadrados, numCuartos, propietario, barrio, ciudad, constructora);
+        super(precioMetroCuadrado, numMetrosCuadrados, numCuartos, identificadorPropietario, nombreBarrio, nombreCiudad, idConstructora);
 
         this.valorAlicuotaMensual = valorAlicuotaMensual;
         this.nombreEdificio = nombreEdificio;
@@ -61,11 +56,10 @@ public class Departamento extends Vivienda{
                 ", numMetrosCuadrados=" + numMetrosCuadrados +
                 ", costoFinal=" + costoFinal +
                 ", numCuartos=" + numCuartos +
-                ", propietario=" + propietario +
-                ", barrio=" + barrio +
-                ", ciudad=" + ciudad +
-                ", constructora=" + constructora +
+                ", propietario=" + identificadorPropietario +
+                ", barrio=" + nombreBarrio +
+                ", ciudad=" + nombreCiudad +
+                ", constructora=" + idConstructora +
                 '}';
     }
-    
 }
