@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paquete01;
 
 import java.util.ArrayList;
@@ -22,7 +17,7 @@ import archivos.*;
  *
  * @author daniel-alejandro-t
  */
-public class Ejecutor {
+public class EjecutorAdministrarInmobiliaria {
 
     public static void main(String[] args) {
         // Textos de menu de opciones
@@ -37,6 +32,7 @@ public class Ejecutor {
         List<Ciudad> listaCiudades;
         List<Constructora> listaConstructoras;
         List<Casa> listaCasas;
+        List<Departamento> listaDepartamentos;
 
         // Inicializamos las listas
         // listaPropietarios = null;
@@ -45,11 +41,13 @@ public class Ejecutor {
         String rutaArchivo = "C:\\Users\\aysanchez6\\Desktop\\POO\\tallerFinal1\\aa-proyectobimestral-daniel-alejandro-t\\AdministrarInmobiliaria\\datos\\barrios.dat";
         FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo);
         FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo);
+        FicheroDepartamento archivoDepartamento = new FicheroDepartamento(rutaArchivo);
         // Usando el método getListaPropietarios() de la clase FicheroPropietario cargamos los datos
         //  del archivo al programa usando la instancia del objeto lecturaPropietarios
         listaPropietarios = archivoPropietarios.getListaPropietarios();
         listaBarrios = archivoBarrios.getListaBarrios();
         listaCiudades = archivoCiudades.getListaBarrios();
+        listaDepartamentos = archivoDepartamento.getListaDepartamentos();
 
         // Creamos un objeto de tipo Scanner para leer la opción ingresada por el usuario
         Scanner entrada = new Scanner(System.in);
@@ -393,8 +391,210 @@ public class Ejecutor {
                     break;
                 case 6:     // Departamentos
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 6
+                    while (opcion != 5) {
+                        // Imprimimos el consola el menú de opciones
+                        // Que nos permite hacer un CRUD de propietarios
+                        System.out.println(menuCRUD);
 
-                    break;
+                        // Leemos la opción ingresada por el usuario
+                        opcion = entrada.nextInt();
+
+                        // Creamos un switch para ejecutar el CRUD correspondiente
+                        switch (opcion) {
+                            case 1:     // Crear
+                                String nombreEdifici, ubicacionIntern, identificacionPropietari, nombreBarri, nombreCiuda, idConstructor;
+                                double valorAlicuotaMensua, precioMetroCuadrad, numMetrosCuadrado;
+                                int numCuarto;
+
+                                // Crear un objeto de tipo Propietario
+                                do {
+                                    System.out.println("Ingrese el nombre del edificio");
+                                    nombreEdifici = entrada.nextLine();
+                                } while (nombreEdifici.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese la ubicacion interna");
+                                    ubicacionIntern = entrada.nextLine();
+                                } while (ubicacionIntern.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese la identificación del propietario");
+                                    identificacionPropietari = entrada.nextLine();
+                                } while (identificacionPropietari.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el nombre del Barrio");
+                                    nombreBarri = entrada.nextLine();
+                                } while (nombreBarri.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el nombre de la ciudad");
+                                    nombreCiuda = entrada.nextLine();
+                                } while (nombreCiuda.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el ID de la constructora");
+                                    idConstructor = entrada.nextLine();
+                                } while (idConstructor.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el valor de la alicuota mensual");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    valorAlicuotaMensua = entrada.nextDouble();
+                                } while (valorAlicuotaMensua <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el precio por metros cuadrados");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    precioMetroCuadrad = entrada.nextDouble();
+                                } while (precioMetroCuadrad <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el numero de los metros cuadrados");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    numMetrosCuadrado = entrada.nextDouble();
+                                } while (numMetrosCuadrado <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el numero de cuartos");
+                                    while (!entrada.hasNextInt()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    numCuarto = entrada.nextInt();
+                                } while (numCuarto <= 0);
+                                
+                                listaDepartamentos.add(new Departamento(valorAlicuotaMensua, nombreEdifici, ubicacionIntern, precioMetroCuadrad, numMetrosCuadrado,
+                                numCuarto, identificacionPropietari, nombreBarri, nombreCiuda, idConstructor));
+
+                                break;
+
+                            case 2:     // Leer
+                                // Usando el método setLeerLista() de la clase Ejecutor
+                                // imprimimos en consola la lista de departamentos
+                                setLeerLista(listaDepartamentos);
+
+                                break;
+
+                            case 3:     // Actualizar
+                                if (listaPropietarios == null) {
+                                    System.out.println("No hay departamentos registrados para actualizar");
+                                    break;
+                                } else {
+                                    String identificador, nombreEUpdate, UbiUpdate, identificacionPropUpdate, barriUpdate, ciuUpdate, idConsUpdate;
+                                    double valorAlicuUpdate, precioMeCuaUpdate,numMetCuaUpdate;
+                                    int numCuarUpdate;
+
+                                    // Ingrese el identificador del propietario al departamento que desea actualizar
+                                    System.out.println("Ingrese el identificador del propietario que desea actualizar");
+                                    setLeerLista(listaDepartamentos);
+                                    do {
+                                        identificador = entrada.nextLine();
+                                    } while (identificador.isEmpty());
+
+                                    // Creamos un objeto de tipo Departamento
+                                    System.out.println("Ingrese los datos del nuevo departamento");
+
+                                    do {
+                                        System.out.println("Ingrese el nombre del edificio");
+                                        nombreEUpdate = entrada.nextLine();
+                                    } while (nombreEUpdate.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese la ubicacion interna en el departamento");
+                                        UbiUpdate = entrada.nextLine();
+                                    } while (UbiUpdate.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese la identificación del propietario");
+                                        identificacionPropUpdate = entrada.nextLine();
+                                    } while (identificacionPropUpdate.isEmpty());
+                                    
+                                    do {
+                                    System.out.println("Ingrese el nombre del Barrio");
+                                    barriUpdate = entrada.nextLine();
+                                } while (barriUpdate.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el nombre de la ciudad");
+                                    ciuUpdate = entrada.nextLine();
+                                } while (ciuUpdate.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el ID de la constructora");
+                                    idConsUpdate = entrada.nextLine();
+                                } while (idConsUpdate.isEmpty());
+                                
+                                do {
+                                    System.out.println("Ingrese el valor de la alicuota mensual");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    valorAlicuUpdate = entrada.nextDouble();
+                                } while (valorAlicuUpdate <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el precio por metros cuadrados");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    precioMeCuaUpdate = entrada.nextDouble();
+                                } while (precioMeCuaUpdate <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el numero de los metros cuadrados");
+                                    while (!entrada.hasNextDouble()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    numMetCuaUpdate = entrada.nextDouble();
+                                } while (numMetCuaUpdate <= 0);
+                                
+                                do {
+                                    System.out.println("Ingrese el numero de cuartos");
+                                    while (!entrada.hasNextInt()) {
+                                        entrada.next(); // Descartar la entrada no válida
+                                    }
+                                    numCuarUpdate = entrada.nextInt();
+                                } while (numCuarUpdate <= 0);
+                                
+                                    // Usando el método setActualizarObjeto() de la clase Ejecutor
+                                    // actualizamos el objeto de tipo Deparamento
+                                    setActualizarObjeto(new Departamento(valorAlicuUpdate, nombreEUpdate, UbiUpdate, 
+                         precioMeCuaUpdate, numMetCuaUpdate,numCuarUpdate, identificacionPropUpdate, 
+                              barriUpdate, ciuUpdate, idConsUpdate), identificador, listaDepartamentos);
+                                }
+                                break;
+
+                            case 4:     // Eliminar
+                                if (listaPropietarios == null) {
+                                    System.out.println("No hay departamentos registrados para eliminar");
+                                } else {
+                                    // Ingrese el identificador del propietario que desea eliminar
+                                    System.out.println("Ingrese el índice del departamento que desea eliminar");
+                                    setLeerLista(listaDepartamentos);
+                                    int identificadorEliminar;
+
+                                    do {
+                                        identificadorEliminar = entrada.nextInt();
+                                    } while (identificadorEliminar < 0 || identificadorEliminar > listaDepartamentos.size());
+
+                                    // Usando el método setEliminarObjeto() de la clase Ejecutor
+                                    // eliminamos el objeto de tipo Propietario
+                                    listaDepartamentos.remove(identificadorEliminar);
+                                }
+                                break;
+                            case 5:     // Salir
+                                opcion = 5;
+                                break;
+
+                            default:
+                                System.out.println("Opción no válida");
+                                break;
 
                 case 7:     // Salir
                     // TODO Evaluar si en este punto del programa es necesario volcar los datos en el archivo
@@ -402,14 +602,15 @@ public class Ejecutor {
                     archivoPropietarios.setVolcarDatosAlArchivo(listaPropietarios);
                     archivoBarrios.setVolcarDatosAlArchivo(listaBarrios);
                     archivoCiudades.setVolcarDatosAlArchivo(listaCiudades);
+                    archivoDepartamento.setVolcarDatosAlArchivo(listaDepartamentos);
                     System.out.println("Gracias por usar el programa.");
 
                     break;
 
                 default:
                     break;
-            }
-
+            }            
+         
         } while (opcion != 7);
 
         // Cerramos el objeto de tipo Scanner
