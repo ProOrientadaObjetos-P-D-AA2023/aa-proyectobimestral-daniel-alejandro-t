@@ -15,9 +15,9 @@ import archivos.*;
 
 /**
  *
- * @author daniel-alejandro-t
+ * @author daniel-alejandro-t 
  */
-public class EjecutorAdministrarInmobiliaria {
+public class Ejecutor {
 
     public static void main(String[] args) {
         // Textos de menu de opciones
@@ -35,13 +35,22 @@ public class EjecutorAdministrarInmobiliaria {
         List<Departamento> listaDepartamentos;
 
         // Inicializamos las listas
-        // listaPropietarios = null;
         // Instanciamos los objetos de tipo ArchivoLectura
-        FicheroPropietario archivoPropietarios = new FicheroPropietario("C:\\Users\\aysanchez6\\Desktop\\POO\\tallerFinal1\\aa-proyectobimestral-daniel-alejandro-t\\AdministrarInmobiliaria\\datos\\propietarios.dat");
-        String rutaArchivo = "C:\\Users\\aysanchez6\\Desktop\\POO\\tallerFinal1\\aa-proyectobimestral-daniel-alejandro-t\\AdministrarInmobiliaria\\datos\\barrios.dat";
-        FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo);
-        FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo);
-        FicheroDepartamento archivoDepartamento = new FicheroDepartamento(rutaArchivo);
+        String rutaArchivo = "AdministrarInmobiliaria/datos/";
+
+        // Si el sistema operativo en el que se ejecuta el programa es Windows
+        // rutaArchivo cambia los slash invertidos por slash normales
+        if (System.getProperty("os.name").toLowerCase().contains("windows")) {
+            rutaArchivo = rutaArchivo.replace("/", "\\");
+        }
+        
+        // Instanciamos los objetos Fichero para las operaciones de lectura y escritura con los archivos
+        FicheroPropietario archivoPropietarios = new FicheroPropietario(rutaArchivo + "propietarios.txt");
+        FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo + "barrios.txt");
+        FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo + "ciudades.txt");
+        FicheroDepartamento archivoDepartamento = new FicheroDepartamento(rutaArchivo + "departamentos.txt");
+
+
         // Usando el método getListaPropietarios() de la clase FicheroPropietario cargamos los datos
         //  del archivo al programa usando la instancia del objeto lecturaPropietarios
         listaPropietarios = archivoPropietarios.getListaPropietarios();
@@ -595,10 +604,10 @@ public class EjecutorAdministrarInmobiliaria {
                             default:
                                 System.out.println("Opción no válida");
                                 break;
-
+                        }
+                    }
                 case 7:     // Salir
-                    // TODO Evaluar si en este punto del programa es necesario volcar los datos en el archivo
-                    // Pienso que si es necesario ya que el contenido de las listas puede haber cambiado
+                    // Al salir del programa, volcamos los datos de las listas hacia los archivos
                     archivoPropietarios.setVolcarDatosAlArchivo(listaPropietarios);
                     archivoBarrios.setVolcarDatosAlArchivo(listaBarrios);
                     archivoCiudades.setVolcarDatosAlArchivo(listaCiudades);
@@ -608,6 +617,7 @@ public class EjecutorAdministrarInmobiliaria {
                     break;
 
                 default:
+                    System.out.println("Opción no válida");
                     break;
             }            
          
