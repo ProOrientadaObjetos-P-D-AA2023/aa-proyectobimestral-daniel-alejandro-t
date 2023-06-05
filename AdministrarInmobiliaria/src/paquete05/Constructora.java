@@ -32,4 +32,9 @@ public class Constructora {
     public void setIdConstructora(String idConstructora) {
         this.idConstructora = idConstructora;
     }
+
+    @Override
+    public String toString() {
+        return "Constructora{" + "nombreConstructora=" + nombreConstructora + ", idConstructora=" + idConstructora + '}';
+    }
 }

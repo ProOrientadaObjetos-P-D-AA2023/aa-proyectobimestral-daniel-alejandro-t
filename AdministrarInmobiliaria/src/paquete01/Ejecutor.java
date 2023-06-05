@@ -27,7 +27,6 @@ public class Ejecutor {
         // Creamos una lista para todos los objetos
         // de tipo Propietario, Barrio, Ciudad, Constructora y Casa
         List<Propietario> listaPropietarios;
-        //  FIXME List<Propietario> listaPropietarios;
         List<Barrio> listaBarrios;
         List<Ciudad> listaCiudades;
         List<Constructora> listaConstructoras;
@@ -35,6 +34,13 @@ public class Ejecutor {
         List<Departamento> listaDepartamentos;
 
         // Inicializamos las listas
+        listaPropietarios = new ArrayList<>();
+        listaBarrios = new ArrayList<>();
+        listaCiudades = new ArrayList<>();
+        listaConstructoras = new ArrayList<>();
+        listaCasas = new ArrayList<>();
+        listaDepartamentos = new ArrayList<>();
+
         // Instanciamos los objetos de tipo ArchivoLectura
         String rutaArchivo = "AdministrarInmobiliaria/datos/";
 
@@ -45,11 +51,11 @@ public class Ejecutor {
         }
         
         // Instanciamos los objetos Fichero para las operaciones de lectura y escritura con los archivos
-        FicheroPropietario archivoPropietarios = new FicheroPropietario(rutaArchivo + "propietarios.txt");
-        FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo + "barrios.txt");
-        FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo + "ciudades.txt");
-        FicheroDepartamento archivoDepartamento = new FicheroDepartamento(rutaArchivo + "departamentos.txt");
-
+        FicheroPropietario archivoPropietarios = new FicheroPropietario(rutaArchivo + "propietarios.dat");
+        FicheroBarrio archivoBarrios = new FicheroBarrio(rutaArchivo + "barrios.dat");
+        FicheroCiudad archivoCiudades = new FicheroCiudad(rutaArchivo + "ciudades.dat");
+        FicheroDepartamento archivoDepartamento = new FicheroDepartamento(rutaArchivo + "departamentos.dat");
+        FicheroConstructora archivoConstructora = new FicheroConstructora(rutaArchivo + "constructoras.dat");
 
         // Usando el método getListaPropietarios() de la clase FicheroPropietario cargamos los datos
         //  del archivo al programa usando la instancia del objeto lecturaPropietarios
@@ -57,6 +63,7 @@ public class Ejecutor {
         listaBarrios = archivoBarrios.getListaBarrios();
         listaCiudades = archivoCiudades.getListaBarrios();
         listaDepartamentos = archivoDepartamento.getListaDepartamentos();
+        listaConstructoras = archivoConstructora.getListaConstructoras();
 
         // Creamos un objeto de tipo Scanner para leer la opción ingresada por el usuario
         Scanner entrada = new Scanner(System.in);
@@ -392,12 +399,265 @@ public class Ejecutor {
                     }
                 case 4:     // Constructoras
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 4
+                    while (opcion != 5 ){
+                        // Imprimimos el consola el menú de opciones
+                        // Que nos permite hacer un CRUD de constructora
+                        System.out.println(menuCRUD);
+
+                        // Leemos la opción ingresada por el usuario
+                        opcion = entrada.nextInt();
+
+                        // Creamos un switch para ejecutar el CRUD correspondiente
+                        switch (opcion) {
+                            case 1:     // Crear
+                                String nombreConstructora, idConstructora;
+
+                                // Recolectamos los datos de la constructora
+                                do {
+                                    System.out.println("Ingrese el nombre de la constructora");
+                                    nombreConstructora = entrada.nextLine();
+                                } while (nombreConstructora.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el identificador de la constructora");
+                                    idConstructora = entrada.nextLine();
+                                } while (idConstructora.isEmpty());
+
+                                // Empujamos un objeto nuevo del tipo Constructora a la lista de constructoras
+                                listaConstructoras.add(new Constructora(nombreConstructora, idConstructora));
+                                
+                                break;
+                                
+                            case 2:     // Leer
+                                // Usando el método setLeerLista() de la clase Ejecutor
+                                // imprimimos en consola la lista de constructoras
+                                setLeerLista(listaConstructoras);
+                                
+                                break;
+
+                            case 3:     // Actualizar
+                                if (listaConstructoras == null) {
+                                    System.out.println("No hay constructoras registradas para actualizar");
+                                } else {
+                                    String nombreConstructora2, idConstructora2;
+                                    int identificadorB;
+
+                                    // Ingrese el identificador de la constructora que desea actualizar
+                                    System.out.println("-------------------------------");
+                                    setLeerLista(listaConstructoras);
+                                    System.out.println("---------------------------------");
+                                    System.out.println("Ingrese el identificador de la constructora que desea actualizar");
+                                    do {
+                                        identificadorB = entrada.nextInt();
+                                    } while (identificadorB < 0 || identificadorB > listaConstructoras.size());
+
+                                    // Creamos un objeto de tipo constructora
+                                    System.out.println("Ingrese los datos de la nueva constructora");
+
+                                    do {
+                                        System.out.println("Ingrese el nombre de la constructora");
+                                        nombreConstructora2 = entrada.nextLine();
+                                    } while (nombreConstructora2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el identificador de la constructora");
+                                        idConstructora2 = entrada.nextLine();
+                                    } while (idConstructora2.isEmpty());
+
+                                    // Usando el método setActualizarObjeto() de la clase Ejecutor
+                                    // actualizamos el objeto de tipo Constructora
+                                    listaConstructoras.set(identificadorB, new Constructora(nombreConstructora2, idConstructora2));
+                                }
+                                break;
+
+                            case 4:     // Eliminar
+                                if (listaConstructoras == null) {
+                                    System.out.println("No hay constructoras registradas para eliminar");
+                                } else {
+                                    // Ingrese el identificador de la constructora que desea eliminar que desea eliminar
+                                    System.out.println("Ingrese el índice de la constructora que desea eliminar");
+                                    setLeerLista(listaConstructoras);
+                                    int identificadorEliminar;
+
+                                    do {
+                                        identificadorEliminar = entrada.nextInt();
+                                    } while (identificadorEliminar < 0 || identificadorEliminar > listaConstructoras.size());
+
+                                    // Usando el método setEliminarObjeto() de la clase Ejecutor
+                                    // eliminamos el objeto de tipo Constructora
+                                    listaConstructoras.remove(identificadorEliminar);
+                                }
+                                break;
+                        
+
+                            default:
+                                System.out.println("Opción no válida");
+                                break;
+                        }
+                    } 
 
                     break;
                 case 5:     // Casas
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 5
+                    while (opcion != 5 ) {
+                        // Imprimimos el consola el menú de opciones
+                        // Que nos permite hacer un CRUD de casas
+                        System.out.println(menuCRUD);
 
-                    break;
+                        // Leemos la opción ingresada por el usuario
+                        opcion = entrada.nextInt();
+
+                        // Creamos un switch para ejecutar el CRUD correspondiente
+                        switch (opcion) {
+                            case 1:     // Crear
+                                String numCasa, identificadorPropietario, nombreBarrio, nombreCiudad, idConstructora;
+                                double precioMetroCuadrado, numMetrosCuadrados; 
+                                int numCuartos;
+
+                                // Recolectamos los datos de la casa
+                                do {
+                                    System.out.println("Ingrese el número de la casa");
+                                    numCasa = entrada.nextLine();
+                                } while (numCasa.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el identificador del propietario");
+                                    identificadorPropietario = entrada.nextLine();
+                                } while (identificadorPropietario.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el nombre del barrio");
+                                    nombreBarrio = entrada.nextLine();
+                                } while (nombreBarrio.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el nombre de la ciudad");
+                                    nombreCiudad = entrada.nextLine();
+                                } while (nombreCiudad.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el identificador de la constructora");
+                                    idConstructora = entrada.nextLine();
+                                } while (idConstructora.isEmpty());
+
+                                do {
+                                    System.out.println("Ingrese el precio del metro cuadrado");
+                                    precioMetroCuadrado = entrada.nextDouble();
+                                } while (precioMetroCuadrado < 0);
+
+                                do {
+                                    System.out.println("Ingrese el número de metros cuadrados");
+                                    numMetrosCuadrados = entrada.nextDouble();
+                                } while (numMetrosCuadrados < 0);
+
+                                do {
+                                    System.out.println("Ingrese el número de cuartos");
+                                    numCuartos = entrada.nextInt();
+                                } while (numCuartos < 0);
+
+                                // Empujamos un objeto nuevo del tipo Casa a la lista de casas
+                                listaCasas.add(new Casa(numCasa, precioMetroCuadrado, numMetrosCuadrados, numCuartos, identificadorPropietario, nombreBarrio, nombreCiudad, idConstructora));
+                        
+                                break;
+                            
+                            case 2:     // Leer
+                                // Usando el método setLeerLista() de la clase Ejecutor
+                                // imprimimos en consola la lista de casas
+                                setLeerLista(listaCasas);
+                                
+                                break;
+
+                            case 3:     // Actualizar
+                                if (listaCasas == null) {
+                                    System.out.println("No hay casas registradas para actualizar");
+                                } else {
+                                    String numCasa2, identificadorPropietario2, nombreBarrio2, nombreCiudad2, idConstructora2;
+                                    double precioMetroCuadrado2, numMetrosCuadrados2;
+                                    int numCuartos2, identificadorB;
+
+                                    // Ingrese el identificador de la casa que desea actualizar
+                                    System.out.println("-------------------------------");
+                                    setLeerLista(listaCasas);
+                                    System.out.println("---------------------------------");
+                                    System.out.println("Ingrese el identificador de la casa que desea actualizar");
+                                    do {
+                                        identificadorB = entrada.nextInt();
+                                    } while (identificadorB < 0 || identificadorB > listaCasas.size());
+
+                                    // Creamos un objeto de tipo casa
+                                    System.out.println("Ingrese los datos de la nueva casa");
+
+                                    do {
+                                        System.out.println("Ingrese el número de la casa");
+                                        numCasa2 = entrada.nextLine();
+                                    } while (numCasa2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el identificador del propietario");
+                                        identificadorPropietario2 = entrada.nextLine();
+                                    } while (identificadorPropietario2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el nombre del barrio");
+                                        nombreBarrio2 = entrada.nextLine();
+                                    } while (nombreBarrio2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el nombre de la ciudad");
+                                        nombreCiudad2 = entrada.nextLine();
+                                    } while (nombreCiudad2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el identificador de la constructora");
+                                        idConstructora2 = entrada.nextLine();
+                                    } while (idConstructora2.isEmpty());
+
+                                    do {
+                                        System.out.println("Ingrese el precio del metro cuadrado");
+                                        precioMetroCuadrado2 = entrada.nextDouble();
+                                    } while (precioMetroCuadrado2 < 0);
+
+                                    do {
+                                        System.out.println("Ingrese el número de metros cuadrados");
+                                        numMetrosCuadrados2 = entrada.nextDouble();
+                                    } while (numMetrosCuadrados2 < 0);
+
+                                    do {
+                                        System.out.println("Ingrese el número de cuartos");
+                                        numCuartos2 = entrada.nextInt();
+                                    } while (numCuartos2 < 0);
+
+                                    // Actualizamos la casa
+                                    listaCasas.get(identificadorB).setNumCasa(numCasa2);
+                                }
+                                break;
+
+                            case 4:     // Eliminar
+                                if (listaCasas == null) {
+                                    System.out.println("No hay casas registradas para eliminar");
+                                } else {
+                                    int identificadorC;
+
+                                    // Ingrese el identificador de la casa que desea eliminar
+                                    System.out.println("-------------------------------");
+                                    setLeerLista(listaCasas);
+                                    System.out.println("---------------------------------");
+                                    System.out.println("Ingrese el identificador de la casa que desea eliminar");
+                                    do {
+                                        identificadorC = entrada.nextInt();
+                                    } while (identificadorC < 0 || identificadorC > listaCasas.size());
+
+                                    // Eliminamos la casa
+                                    listaCasas.remove(identificadorC);
+                                }
+                                break;
+                            default:
+                                System.out.println("Opción inválida");
+                                break;
+                        }   
+
+                    }
+                    
                 case 6:     // Departamentos
                     // Creamos un ciclo que se repite mientras la opción ingresada sea diferente de 6
                     while (opcion != 5) {
@@ -612,6 +872,7 @@ public class Ejecutor {
                     archivoBarrios.setVolcarDatosAlArchivo(listaBarrios);
                     archivoCiudades.setVolcarDatosAlArchivo(listaCiudades);
                     archivoDepartamento.setVolcarDatosAlArchivo(listaDepartamentos);
+                    archivoConstructora.setVolcarDatosAlArchivo(listaConstructoras);
                     System.out.println("Gracias por usar el programa.");
 
                     break;
