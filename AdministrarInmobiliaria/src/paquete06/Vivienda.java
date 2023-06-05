@@ -14,22 +14,23 @@ public abstract class Vivienda {
     int numCuartos;
 
     // Instancias colunes entre Casa y Departamento
-    Propietario propietario;
-    Barrio barrio;
-    Ciudad ciudad;
-    Constructora constructora;
+    String identificadorPropietario;
+    String nombreBarrio;
+    String nombreCiudad;
+    String idConstructora;
+
 
     // Constructor
     protected Vivienda(double precioMetroCuadrado, double numMetrosCuadrados, int numCuartos,
-                        Propietario propietario, Barrio barrio, Ciudad ciudad,
-                        Constructora constructora) {
+                        String identificadorPropietario, String nombreBarrio, String nombreCiudad,
+                        String idConstructora) {
 
         this.numCuartos = numCuartos;
 
-        this.propietario = propietario;
-        this.barrio = barrio;
-        this.ciudad = ciudad;
-        this.constructora = constructora;
+        this.identificadorPropietario = identificadorPropietario;
+        this.nombreBarrio = nombreBarrio;
+        this.nombreCiudad = nombreCiudad;
+        this.idConstructora = idConstructora;
 
         setCalculaCostoFinal(precioMetroCuadrado, numMetrosCuadrados);  // El método ya guarda los valores
     }
@@ -70,42 +71,6 @@ public abstract class Vivienda {
         this.numCuartos = numCuartos;
     }
 
-    public Propietario getPropietario() {
-        return propietario;
-    }
-
-    public void setPropietario(Propietario propietario) {
-
-        this.propietario = propietario;
-    }
-
-    public Barrio getBarrio() {
-        return barrio;
-    }
-
-    public void setBarrio(Barrio barrio) {
-
-        this.barrio = barrio;
-    }
-
-    public Ciudad getCiudad() {
-        return ciudad;
-    }
-
-    public void setCiudad(Ciudad ciudad) {
-
-        this.ciudad = ciudad;
-    }
-
-    public Constructora getConstructora() {
-        return constructora;
-    }
-
-    public void setConstructora(Constructora constructora) {
-
-        this.constructora = constructora;
-    }
-
     @Override
     public String toString() {
         return "Vivienda{" +
@@ -113,9 +78,9 @@ public abstract class Vivienda {
                 ", numMetrosCuadrados=" + numMetrosCuadrados +
                 ", costoFinal=" + costoFinal +
                 ", numCuartos=" + numCuartos +
-                ", propietario=" + propietario +
-                ", barrio=" + barrio +
-                ", ciudad=" + ciudad +
-                ", constructora=" + constructora;
+                ", cedula del propietario=" + identificadorPropietario +
+                ", barrio=" + nombreBarrio +
+                ", ciudad=" + nombreCiudad +
+                ", constructora=" + idConstructora;
     }
 }

@@ -20,9 +20,8 @@ public class Casa extends Vivienda{
     String numCasa;
 
     public Casa(String numCasa, double precioMetroCuadrado, double numMetrosCuadrados, int numCuartos,
-                Propietario propietario, Barrio barrio, Ciudad ciudad, Constructora constructora) {
-
-        super(precioMetroCuadrado, numMetrosCuadrados, numCuartos, propietario, barrio, ciudad, constructora);
+                String identificadorPropietario, String nombreBarrio, String nombreCiudad, String idConstructora) {
+        super(precioMetroCuadrado, numMetrosCuadrados, numCuartos, identificadorPropietario, nombreBarrio, nombreCiudad, idConstructora);
 
         this.numCasa = numCasa;
     }

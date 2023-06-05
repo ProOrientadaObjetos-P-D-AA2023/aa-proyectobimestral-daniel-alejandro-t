@@ -10,28 +10,38 @@ package paquete03;
  * @author reroes
  */
 public class Barrio {
-    String nombreDelBarrio;
+    String nombreBarrio;
     String referencia;
 
     public Barrio(String nombreDelBarrio, String referencia) {
-        this.nombreDelBarrio = nombreDelBarrio;
+        this.nombreBarrio = nombreDelBarrio;
         this.referencia = referencia;
     }
 
-    public String getNombreDelBarrio() {
-        return nombreDelBarrio;
+    public String getNombreBarrio() {
+        return nombreBarrio;
     }
 
-    public void setNombreDelBarrio(String nombreDelBarrio) {
-        this.nombreDelBarrio = nombreDelBarrio;
+    public void setNombreBarrio(String n) {
+        this.nombreBarrio = n;
     }
 
     public String getReferencia() {
         return referencia;
     }
 
-    public void setReferencia(String referencia) {
-        this.referencia = referencia;
+    public void setReferencia(String r) {
+        this.referencia = r;
     }
+
+    
+    
+    
+    @Override
+    public String toString (){
+        
+        return "Nombre de barrio: "+ getNombreBarrio() + " Referencia: "+ getReferencia(); 
+    }
+            
 }
 

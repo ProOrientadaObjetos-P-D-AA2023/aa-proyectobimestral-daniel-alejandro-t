@@ -21,6 +21,7 @@ public abstract class Fichero {
             
             // Carga de .dat ==> lista según la especificación de cada clase
             getCargarDatosAlPrograma(); 
+            
         } else {
             crearArchivo(rutaArchivo);
             
@@ -64,6 +65,7 @@ public abstract class Fichero {
 
     // Método que retorna los datos del archivo ==> formato lista
     public abstract void getCargarDatosAlPrograma();
+
 
     // Método que vuelca los datos de la lista ==> archivo
     public abstract void setVolcarDatosAlArchivo(List miListaConDatos);
